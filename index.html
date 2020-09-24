@@ -56,5 +56,44 @@
     </div>
 
 </body>
+<script>
+    let container = document.getElementById("container-img");
+    let img_el_list = container.children;
+    let slide_up = document.getElementById("slide-up");
+    let slide_down = document.getElementById("slide-down");
+
+    slide_down.addEventListener("click", () => {
+        let index_img_prev = parseInt(container.getAttribute("data-index"));
+
+        if (index_img_prev > img_el_list.length - 1) {
+            img_el_list[index_img_prev].setAttribute("data-active", true);
+            return;
+        }
+
+        index_img = index_img_prev + 1;
+
+        if (index_img > img_el_list.length - 1) {
+            img_el_list[index_img_prev].setAttribute("data-active", true);
+            return;
+        }
+
+        let top_style = index_img * 100;
+        container.style.top = `-${top_style}%`;
+        container.setAttribute("data-index", index_img);
+        img_el_list[index_img].setAttribute("data-active", true);
+    });
+
+    slide_up.addEventListener("click", () => {
+        let index_img = parseInt(container.getAttribute("data-index"));
+        img_el_list[index_img].setAttribute("data-active", false);
+        index_img = index_img - 1;
+
+        if (index_img < 0) return;
+        let top_style = index_img * 100;
+        container.style.top = `-${top_style}%`;
+        container.setAttribute("data-index", index_img);
+        img_el_list[index_img].setAttribute("data-active", true);
+    });
+</script>
 
 </html>
