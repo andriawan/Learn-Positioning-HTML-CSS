@@ -1,0 +1,82 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="relative h-64 max-w-2xl mx-auto bg-gray-400">
+        <div class="h-64 overflow-hidden bg-gray-600">
+            <div class="m-w-0 relative" data-index="0" id="container-img">
+                <div class="h-64 bg-green-300 relative" data-active="true">
+                    <img class="object-cover w-full h-full" src="http://lorempixel.com/g/600/200/" alt="" />
+                    <div class="absolute top-0 p-3 text-white right-0 bg-blue-800">
+                        News
+                    </div>
+                </div>
+                <div class="h-64 bg-blue-400 relative">
+                    <img class="object-cover w-full h-full" src="http://lorempixel.com/g/800/500/" alt="" />
+                    <div class="absolute top-0 p-3 text-white right-0 bg-gray-800">
+                        Absolute child
+                    </div>
+                </div>
+                <div class="h-64 bg-blue-400 relative">
+                    <img class="object-cover w-full h-full" src="http://lorempixel.com/g/800/400/" alt="" />
+                    <div class="absolute top-0 p-3 text-white right-0 bg-gray-800">
+                        Absolute child
+                    </div>
+                </div>
+                <div class="h-64 bg-blue-400 relative">
+                    <img class="object-cover w-full h-full" src="http://lorempixel.com/g/800/200/" alt="" />
+                    <div class="absolute top-0 p-3 text-white right-0 bg-gray-800">
+                        Absolute child
+                    </div>
+                </div>
+                <div class="h-64 relative">
+                    <div class="absolute top-0 p-3 text-white right-0 bg-gray-800">
+                        Absolute child
+                    </div>
+                    <img class="object-cover w-full h-full" src="http://lorempixel.com/g/700/300/" alt="" />
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <div class="m-2">
+                <button id="slide-up" class="w-32 bg-blue-800 p-3 text-blue-200">
+                    slide up
+                </button>
+                <button id="slide-down" class="w-32 bg-blue-800 p-3 text-blue-200">
+                    slide down
+                </button>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    let container = document.getElementById("container-img");
+    let img_el_list = container.children;
+    let slide_up = document.getElementById("slide-up");
+    let slide_down = document.getElementById("slide-down");
+
+    slide_down.addEventListener("click", () => {
+        let copy_of_first_el = container.firstElementChild.cloneNode(true)
+        container.firstElementChild.remove()
+        container.append(copy_of_first_el)
+    });
+
+    slide_up.addEventListener("click", () => {
+        let copy_of_last_el = container.lastElementChild.cloneNode(true)
+        container.lastElementChild.remove()
+        container.insertBefore(copy_of_last_el, container.firstElementChild)
+    });
+
+    setInterval(() => {
+        slide_down.click()
+    }, 5000)
+</script>
+
+</html>
